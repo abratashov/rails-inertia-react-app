@@ -3,7 +3,7 @@
 //
 //    <%= vite_client_tag %>
 //    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+// console.log('Vite ⚡️ Rails')
 
 // If using a TypeScript entrypoint file:
 //     <%= vite_typescript_tag 'application' %>
@@ -11,7 +11,7 @@ console.log('Vite ⚡️ Rails')
 // If you want to use .jsx or .tsx, add the extension:
 //     <%= vite_javascript_tag 'application.jsx' %>
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+// console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
 
 // Example: Load Rails libraries in Vite.
 //
@@ -35,3 +35,37 @@ import * as ActiveStorage from "@rails/activestorage"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+
+
+
+
+import React from 'react'
+import { render } from 'react-dom'
+import { createInertiaApp } from '@inertiajs/inertia-react'
+import { InertiaProgress } from '@inertiajs/progress';
+import axios from 'axios';
+import Layout from '../components/Layout';
+
+const pages = import.meta.glob('../pages/*.jsx')
+
+document.addEventListener('DOMContentLoaded', () => {
+  const csrfToken = document.querySelector('meta[name=csrf-token]').content;
+  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+
+
+  InertiaProgress.init();
+
+  createInertiaApp({
+    resolve: async name => {
+      const page = (await pages[`../pages/${name}.jsx`]()).default;
+      page.layout = page.layout || Layout
+
+      return page
+    },
+    setup({ el, App, props }) {
+      render(<App {...props} />, el)
+    },
+  })
+});
