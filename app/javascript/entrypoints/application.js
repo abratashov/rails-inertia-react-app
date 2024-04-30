@@ -30,7 +30,7 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+// import "channels"
 
 Rails.start()
 Turbolinks.start()
