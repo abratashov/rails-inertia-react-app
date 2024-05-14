@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # TODO: Remove after migration to Rails 7
+  get "healthz" => "health#show"
+  get "up" => "health#show"
+  # END
+
   get 'home/index'
 
   root to: "home#index"

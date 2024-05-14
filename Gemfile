@@ -55,4 +55,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'inertia_rails'
+gem 'inertia_rails', '~> 3.1'
+gem 'dockerfile-rails', '~> 1.6'
+gem 'dotenv-rails', '~> 2.8'
+# gem 'kamal', '~> 1.5'
